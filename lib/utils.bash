@@ -59,10 +59,10 @@ install_version() {
 
 	(
 		mkdir -p "$install_path"
-		cp -r "$ASDF_DOWNLOAD_PATH"/* "$install_path"
+		cd "$ASDF_DOWNLOAD_PATH"
 
 		# Compile and install
-		make PREFIX=$ASDF_INSTALL_PATH install || fail "Unable to compile and install valkey executables"
+		make PREFIX=$install_path install || fail "Unable to compile and install valkey executables"
 
 		# TODO: Assert valkey executable exists.
 		local tool_cmd
@@ -71,7 +71,7 @@ install_version() {
 
 		echo "$TOOL_NAME $version installation was successful!"
 	) || (
-		rm -rf "$install_path"
+		rm -rf "$ASDF_INSTALL_PATH"
 		fail "An error occurred while installing $TOOL_NAME $version."
 	)
 }
