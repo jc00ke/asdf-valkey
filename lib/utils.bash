@@ -51,7 +51,7 @@ download_release() {
 install_version() {
 	local install_type="$1"
 	local version="$2"
-	local install_path="${3%/bin}/bin"
+	local install_path="${3%/bin}"
 
 	if [ "$install_type" != "version" ]; then
 		fail "asdf-$TOOL_NAME supports release installs only"
@@ -62,7 +62,7 @@ install_version() {
 		cd "$ASDF_DOWNLOAD_PATH"
 
 		# Compile and install
-		make PREFIX=$install_path install || fail "Unable to compile and install valkey executables"
+		make PREFIX="$install_path" install || fail "Unable to compile and install valkey executables"
 
 		# TODO: Assert valkey executable exists.
 		local tool_cmd
