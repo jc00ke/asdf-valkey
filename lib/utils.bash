@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for valkey.
-GH_REPO="https://github.com/jc00ke/asdf-valkey"
+GH_REPO="https://github.com/valkey-io/valkey/"
 TOOL_NAME="valkey"
 TOOL_TEST="valkey-server --version"
 
