@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-# TODO: Ensure this is the correct GitHub homepage where releases can be downloaded for valkey.
 GH_REPO="https://github.com/valkey-io/valkey"
 TOOL_NAME="valkey"
 TOOL_TEST="valkey-server --version"
@@ -31,7 +30,6 @@ list_github_tags() {
 }
 
 list_all_versions() {
-	# TODO: Adapt this. By default we simply list the tag names from GitHub releases.
 	# Change this function if valkey has other means of determining installable versions.
 	list_github_tags
 }
@@ -41,7 +39,6 @@ download_release() {
 	version="$1"
 	filename="$2"
 
-	# TODO: Adapt the release URL convention for valkey
 	url="$GH_REPO/archive/refs/tags/${version}.tar.gz"
 
 	echo "* Downloading $TOOL_NAME release $version..."
@@ -64,7 +61,6 @@ install_version() {
 		# Compile and install
 		make PREFIX="$install_path" install || fail "Unable to compile and install valkey executables"
 
-		# TODO: Assert valkey executable exists.
 		local tool_cmd
 		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
 		test -x "$install_path/bin/$tool_cmd" || fail "Expected $install_path/bin/$tool_cmd to be executable."
