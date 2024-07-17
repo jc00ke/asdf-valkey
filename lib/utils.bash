@@ -67,10 +67,7 @@ install_version() {
 		# TODO: Assert valkey executable exists.
 		local tool_cmd
 		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
-		echo "install_path: $install_path"
-		echo "tool_cmd: $tool_cmd"
-		ls "$install_path"
-		test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
+		test -x "$install_path/bin/$tool_cmd" || fail "Expected $install_path/bin/$tool_cmd to be executable."
 
 		echo "$TOOL_NAME $version installation was successful!"
 	) || (
