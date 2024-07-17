@@ -67,11 +67,13 @@ install_version() {
 		# TODO: Assert valkey executable exists.
 		local tool_cmd
 		tool_cmd="$(echo "$TOOL_TEST" | cut -d' ' -f1)"
+		echo "install_path: $install_path"
+		echo "tool_cmd: $tool_cmd"
 		test -x "$install_path/$tool_cmd" || fail "Expected $install_path/$tool_cmd to be executable."
 
 		echo "$TOOL_NAME $version installation was successful!"
 	) || (
-		rm -rf "$ASDF_INSTALL_PATH"
+		rm -rf "$ASDF_DOWNLOAD_PATH"
 		fail "An error occurred while installing $TOOL_NAME $version."
 	)
 }
